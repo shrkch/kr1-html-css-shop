@@ -28,4 +28,4 @@
 ## Текущий статус
 
 Создана базовая структура проекта.
-
+https://shrkch.github.io/kr1-html-css-shop/
