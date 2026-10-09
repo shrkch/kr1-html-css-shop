@@ -32,6 +32,11 @@
 
   /* Размеры */
   --container-width: 1100px;
+  --header-offset: 120px; /* высота липкой шапки + запас */
+
+  /* Слои (z-index) */
+  --z-header: 10;
+  --z-to-top: 20;
 }
 
 /* ===============================
@@ -78,6 +83,11 @@ a:focus-visible {
 :target {
   outline: 2px dashed var(--color-primary);
   outline-offset: 4px;
+}
+
+/* Чтобы липкая шапка не закрывала раздел после перехода по якорю */
+[id] {
+  scroll-margin-top: var(--header-offset);
 }
 
 /* Подсветка ошибочных полей. Атрибут aria-invalid добавляет JavaScript */
@@ -135,9 +145,19 @@ a:focus-visible {
    4. Блок site-header — шапка сайта
    =============================== */
 
+/* sticky: шапка «прилипает» к верху окна при прокрутке */
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
   padding: var(--space-lg);
   background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Шапка — цель ссылки «Наверх», рамка ей не нужна */
+.site-header:target {
+  outline: none;
 }
 
 .site-header__inner {
@@ -210,6 +230,10 @@ a:focus-visible {
   color: var(--color-muted);
 }
 
+.breadcrumbs__separator {
+  color: var(--color-muted);
+}
+
 /* ===============================
    7. Блоки hero и section — разделы страницы
    =============================== */
@@ -232,6 +256,35 @@ a:focus-visible {
 }
 
 /* ===============================
+   7.1. Блок advantages — преимущества магазина
+   =============================== */
+
+.advantages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.advantages__item {
+  padding: var(--space-md);
+  border-top: 4px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.advantages__title {
+  margin: 0 0 var(--space-sm);
+}
+
+.advantages__text {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+/* ===============================
    8. Блок products-grid — сетка товаров
    Отвечает только за расположение карточек.
    =============================== */
@@ -246,7 +299,9 @@ a:focus-visible {
    9. Блок product-card — карточка товара
    =============================== */
 
+/* relative: карточка — точка отсчёта для бейджа */
 .product-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
@@ -289,11 +344,121 @@ a:focus-visible {
   color: var(--color-danger);
 }
 
-/* Кнопка/ссылка прижимается к низу карточки */
-.product-card__button,
+/* absolute: бейдж в правом верхнем углу карточки */
+.product-card__badge {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+.product-card__badge--new {
+  background-color: var(--color-success);
+}
+
+.product-card--discount .product-card__badge {
+  background-color: var(--color-danger);
+}
+
+/* Кнопки/ссылка прижимаются к низу карточки */
+.product-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: auto;
+}
+
 .product-card__link {
   margin-top: auto;
   align-self: flex-start;
+}
+
+/* ===============================
+   9.1. Блок product — страница товара
+   =============================== */
+
+.product {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-xl);
+}
+
+.product__gallery {
+  position: relative;
+}
+
+.product__badge {
+  position: absolute;
+  top: var(--space-md);
+  left: var(--space-md);
+  padding: var(--space-xs) var(--space-sm);
+  font-weight: 700;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+.product__image {
+  display: block;
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+.product__title {
+  margin-top: 0;
+}
+
+.product__description {
+  color: var(--color-muted);
+}
+
+.product__price {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.product__stock {
+  color: var(--color-success);
+}
+
+/* ===============================
+   9.2. Блок product-table — таблица характеристик
+   =============================== */
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-table__caption {
+  margin-bottom: var(--space-sm);
+  font-size: 20px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.product-table__head,
+.product-table__cell {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border);
+  text-align: left;
+}
+
+.product-table__head {
+  background-color: var(--color-surface-accent);
+}
+
+.product-table__row:nth-child(even) {
+  background-color: var(--color-surface);
 }
 
 /* ===============================
@@ -329,8 +494,12 @@ a:focus-visible {
   margin: 0 auto var(--space-xl);
 }
 
+/* sticky: фильтр остаётся на экране при прокрутке списка товаров */
 .catalog-layout__filters {
   grid-area: filters;
+  position: sticky;
+  top: var(--header-offset);
+  align-self: start;
 }
 
 .catalog-layout__products {
@@ -452,6 +621,14 @@ a:focus-visible {
   margin-top: var(--space-lg);
 }
 
+/* Форма на отдельной странице order.html */
+.order-page__form {
+  max-width: 560px;
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
 /* ===============================
    16. Блок success-message — сообщение об отправке
    =============================== */
@@ -471,4 +648,32 @@ a:focus-visible {
 .site-footer {
   padding: var(--space-lg);
   background-color: var(--color-surface);
+}
+
+/* ===============================
+   18. Блок to-top — кнопка «Наверх»
+   fixed: кнопка закреплена в углу окна и не прокручивается
+   =============================== */
+
+.to-top {
+  position: fixed;
+  right: var(--space-lg);
+  bottom: var(--space-lg);
+  z-index: var(--z-to-top);
+  padding: var(--space-sm) var(--space-md);
+  color: var(--color-white);
+  text-decoration: none;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.to-top:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary-dark);
+}
+
+.to-top:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
 }

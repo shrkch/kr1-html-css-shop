@@ -25,9 +25,12 @@ orderButtons.forEach((button) => {
 });
 
 // Закрываем модальное окно по кнопке «Закрыть».
-closeDialogButton.addEventListener('click', () => {
-  orderDialog.close();
-});
+// Проверка нужна, потому что на странице order.html модального окна нет.
+if (closeDialogButton) {
+  closeDialogButton.addEventListener('click', () => {
+    orderDialog.close();
+  });
+}
 // Получаем форму заявки.
 const orderForm = document.getElementById('order-form');
 
@@ -64,10 +67,13 @@ orderForm.addEventListener('submit', (event) => {
 
   // Показываем сообщение об успешной отправке.
   successMessage.hidden = false;
+  successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
   // Очищаем форму.
   orderForm.reset();
 
-  // Закрываем модальное окно.
-  orderDialog.close();
+  // Закрываем модальное окно, если форма находится в нём.
+  if (orderDialog) {
+    orderDialog.close();
+  }
 });

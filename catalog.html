@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header class="site-header">
+  <header class="site-header" id="top">
     <div class="site-header__inner">
       <a class="site-header__logo" href="index.html">ShopProject</a>
 
@@ -20,6 +20,7 @@
         <ul class="site-nav__list">
           <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
           <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="catalog.html" aria-current="page">Каталог</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="index.html#advantages">Преимущества</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
@@ -86,28 +87,31 @@
         <h2 class="catalog-layout__title">Список товаров</h2>
 
         <div class="products-grid">
-          <article class="product-card">
-            <img class="product-card__image" src="images/product1.jpg" alt="Товар 1">
+          <article class="product-card product-card--featured">
+            <span class="product-card__badge">Хит</span>
+            <img class="product-card__image" src="images/product1.jpg" alt="iPhone 18 Pro Max Glacier">
             <h3 class="product-card__title">iPhone 18 Pro Max Glacier</h3>
             <p class="product-card__description">Экран 6,9" OLED, 120 Гц, процессор Apple A19, фронтальная камера 18 Мп, память 256/512 ГБ.</p>
             <p class="product-card__price">Цена: 1000 руб.</p>
-            <a class="button button--primary product-card__link" href="index.html#popular">Подробнее</a>
+            <a class="button button--primary product-card__link" href="product.html">Подробнее</a>
           </article>
 
           <article class="product-card">
-            <img class="product-card__image" src="images/product2.jpg" alt="Товар 2">
+            <span class="product-card__badge product-card__badge--new">Новинка</span>
+            <img class="product-card__image" src="images/product2.jpg" alt="iPhone 18 Pro Max Silver">
             <h3 class="product-card__title">iPhone 18 Pro Max Silver</h3>
             <p class="product-card__description">Экран 6,9" OLED, 120 Гц, процессор Apple A19, фронтальная камера 18 Мп, память 256/512 ГБ.</p>
             <p class="product-card__price">Цена: 1500 руб.</p>
-            <a class="button button--primary product-card__link" href="index.html#popular">Подробнее</a>
+            <a class="button button--primary product-card__link" href="product.html">Подробнее</a>
           </article>
 
-          <article class="product-card">
-            <img class="product-card__image" src="images/product3.jpg" alt="Товар 3">
+          <article class="product-card product-card--discount">
+            <span class="product-card__badge">Скидка</span>
+            <img class="product-card__image" src="images/product3.jpg" alt="iPhone 18 Pro Max Burgundy">
             <h3 class="product-card__title">iPhone 18 Pro Max Burgundy</h3>
             <p class="product-card__description">Экран 6,9" OLED, 120 Гц, процессор Apple A19, фронтальная камера 18 Мп, память 256/512 ГБ.</p>
             <p class="product-card__price">Цена: 2000 руб.</p>
-            <a class="button button--primary product-card__link" href="index.html#popular">Подробнее</a>
+            <a class="button button--primary product-card__link" href="product.html">Подробнее</a>
           </article>
         </div>
       </section>
@@ -118,5 +122,7 @@
     <p class="site-footer__text">&copy; 2026 Учебный проект. Все права защищены.</p>
     <p class="site-footer__text">Дисциплина: Фронтенд и бэкенд разработка</p>
   </footer>
+
+  <a class="to-top" href="#top" aria-label="Наверх">↑ Наверх</a>
 </body>
 </html>
