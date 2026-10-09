@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://shrkch.github.io/kr1-html-css-shop/images/preview.jpg">
 </head>
 <body>
-  <header class="site-header">
+  <header class="site-header" id="top">
     <div class="site-header__inner">
       <a class="site-header__logo" href="index.html">ShopProject</a>
 
@@ -21,6 +21,7 @@
         <ul class="site-nav__list">
           <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="index.html" aria-current="page">Главная</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="index.html#advantages">Преимущества</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
@@ -45,38 +46,69 @@
       <a class="button button--primary hero__button" href="#popular">Перейти к товарам</a>
     </section>
 
+    <section class="section" id="advantages">
+      <h2 class="section__title">Преимущества</h2>
+
+      <ul class="advantages">
+        <li class="advantages__item">
+          <h3 class="advantages__title">Оригинальная техника</h3>
+          <p class="advantages__text">Только официальные устройства с гарантией производителя.</p>
+        </li>
+        <li class="advantages__item">
+          <h3 class="advantages__title">Быстрая доставка</h3>
+          <p class="advantages__text">Доставим заказ по Москве в течение одного дня.</p>
+        </li>
+        <li class="advantages__item">
+          <h3 class="advantages__title">Удобная оплата</h3>
+          <p class="advantages__text">Оплата картой, наличными или в рассрочку.</p>
+        </li>
+      </ul>
+    </section>
+
     <section class="section" id="popular">
       <h2 class="section__title">Популярные товары</h2>
 
       <div class="products-grid">
-        <article class="product-card">
-          <img class="product-card__image" src="images/product1.jpg" alt="Товар 1">
+        <article class="product-card product-card--featured">
+          <span class="product-card__badge">Хит</span>
+          <img class="product-card__image" src="images/product1.jpg" alt="iPhone 18 Pro Max Glacier">
           <h3 class="product-card__title">iPhone 18 Pro Max Glacier</h3>
           <p class="product-card__description">Экран 6,9" OLED, 120 Гц, процессор Apple A19, фронтальная камера 18 Мп, память 256/512 ГБ.</p>
           <p class="product-card__price">Цена: 1000 руб.</p>
-          <button class="button button--primary product-card__button" type="button" data-product="Товар 1">
-            Заказать
-          </button>
+          <div class="product-card__actions">
+            <a class="button button--secondary" href="product.html">Подробнее</a>
+            <button class="button button--primary product-card__button" type="button" data-product="iPhone 18 Pro Max Glacier">
+              Заказать
+            </button>
+          </div>
         </article>
 
         <article class="product-card">
-          <img class="product-card__image" src="images/product2.jpg" alt="Товар 2">
+          <span class="product-card__badge product-card__badge--new">Новинка</span>
+          <img class="product-card__image" src="images/product2.jpg" alt="iPhone 18 Pro Max Silver">
           <h3 class="product-card__title">iPhone 18 Pro Max Silver</h3>
           <p class="product-card__description">Экран 6,9" OLED, 120 Гц, процессор Apple A19, фронтальная камера 18 Мп, память 256/512 ГБ.</p>
           <p class="product-card__price">Цена: 1500 руб.</p>
-          <button class="button button--primary product-card__button" type="button" data-product="Товар 2">
-            Заказать
-          </button>
+          <div class="product-card__actions">
+            <a class="button button--secondary" href="product.html">Подробнее</a>
+            <button class="button button--primary product-card__button" type="button" data-product="iPhone 18 Pro Max Silver">
+              Заказать
+            </button>
+          </div>
         </article>
 
-        <article class="product-card">
-          <img class="product-card__image" src="images/product3.jpg" alt="Товар 3">
+        <article class="product-card product-card--discount">
+          <span class="product-card__badge">Скидка</span>
+          <img class="product-card__image" src="images/product3.jpg" alt="iPhone 18 Pro Max Burgundy">
           <h3 class="product-card__title">iPhone 18 Pro Max Burgundy</h3>
           <p class="product-card__description">Экран 6,9" OLED, 120 Гц, процессор Apple A19, фронтальная камера 18 Мп, память 256/512 ГБ.</p>
           <p class="product-card__price">Цена: 2000 руб.</p>
-          <button class="button button--primary product-card__button" type="button" data-product="Товар 3">
-            Заказать
-          </button>
+          <div class="product-card__actions">
+            <a class="button button--secondary" href="product.html">Подробнее</a>
+            <button class="button button--primary product-card__button" type="button" data-product="iPhone 18 Pro Max Burgundy">
+              Заказать
+            </button>
+          </div>
         </article>
       </div>
     </section>
@@ -95,6 +127,8 @@
     <p class="site-footer__text">&copy; 2026 Учебный проект. Все права защищены.</p>
     <p class="site-footer__text">Дисциплина: Фронтенд и бэкенд разработка</p>
   </footer>
+
+  <a class="to-top" href="#top" aria-label="Наверх">↑ Наверх</a>
 
   <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
     <h2 class="order-dialog__title" id="order-dialog-title">Оформление заявки</h2>
